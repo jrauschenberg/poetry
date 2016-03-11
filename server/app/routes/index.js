@@ -3,10 +3,10 @@ var router = require('express').Router();
 var natural = require('natural');
 module.exports = router;
 
-// router.use('/members', require('./members'));
-
 router.use('/words', require('./words'));
 router.use('/poems', require('./poems'));
+router.use('/frequencies', require('./frequencies'));
+router.use('/sentiments', require('./sentiments'));
 
 // Make sure this is after all of
 // the registered routes!

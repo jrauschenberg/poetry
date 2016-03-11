@@ -4,3 +4,5 @@
 require('./user');
 require('./word');
 require('./poem');
+require('./frequency');
+require('./sentiments');

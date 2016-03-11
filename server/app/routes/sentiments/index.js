@@ -1,15 +1,12 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
-var _ = require('lodash');
-var csv = require("fast-csv");
-var fs = require('fs');
 var mongoose = require('mongoose');
-var Words = mongoose.model('Words');
+var Sentiments = mongoose.model('Sentiments');
 
 router.get('/', function(req, res, next) {
-  Words.find({})
-  .then(function(words) {
-    res.sendStatus(200);
+  Sentiments.find({})
+  .then(function(sentiments) {
+    res.status(200).send(sentiments);
   }).then(null, next);
 });
