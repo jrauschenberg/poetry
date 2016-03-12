@@ -5,3 +5,11 @@ app.config(function($stateProvider) {
     controller: 'HomeController'
   });
 });
+
+app.config(function($stateProvider) {
+  $stateProvider.state('about', {
+    url: '/about',
+    templateUrl: 'js/home/about.html',
+    controller: 'AboutController'
+  });
+});

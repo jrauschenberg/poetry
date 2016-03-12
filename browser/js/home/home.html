@@ -7,22 +7,22 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Poetry Analyzer</title>
+<!--     <link rel="icon" href="../../favicon.ico">
+ -->
+    <title>Poetaster</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../node-modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+<!--     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
-    <link href="/browser/js/home/justified-nav.css" rel="stylesheet">
+<!--     <link href="/browser/js/home/justified-nav.css" rel="stylesheet"> -->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+<!--     <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -38,15 +38,12 @@
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
-        <h3 class="text-muted">Project name</h3>
+        <h3 class="text-muted">Poetaster</h3>
         <nav>
           <ul class="nav nav-justified">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="https://www.youtube.com/watch?v=pO84LE36kp8">Related</a></li>
+            <li><a ui-sref="about">About</a></li>
           </ul>
         </nav>
       </div>
@@ -54,9 +51,9 @@
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h1>Professional Poetry Analysis for Pennies on the Dollar!</h1>
-        <pre>frequencies: {{frequencies}}</pre>
-        <pre>sentiments: {{sentiments}}</pre>
-        <p class="lead">Enter your poem below to have it analyzed for sentiment and word patterns. We can also compare it to some of the greats to see whose poetry yours is a blatant rip-off of.</p>
+  <!--       <pre>frequencies: {{frequencies}}</pre>
+        <pre>sentiments: {{sentiments}}</pre> -->
+        <p class="lead">Enter your poem below to have it analyzed for sentiment and word patterns. We can also compare it to some of the greats to see whose poetry you blatantly emulate.</p>
       </div>
       <!-- Example row of columns -->
       <div class="row">
@@ -66,24 +63,62 @@
           <p>Write or copy and paste your poem here for analysis.</p>
           <p><a class="btn btn-primary" ng-model="poem" ng-click="analyze(poem)" role="button">Analyze &raquo;</a></p>
        </div>
-             <div class="container" display="block">
 
-       <nvd3 options="options" data="data"></nvd3>
-       </div>
         <div class="col-lg-6">
           <h2>Heading</h2>
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
           <p><a class="btn btn-primary" ng-model="poem" ng-click="analyze(poem)" role="button">View details &raquo;</a></p>
         </div>
       </div>
+      <div>
+        <nvd3 options="options2" data="data2" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+          </div>
+          
+          <nvd3 options="options3" data="data3" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+          </div>
+
+          <nvd3 options="options4" data="data4" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
+
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+          </div>
+
+          <nvd3 options="options5" data="data5" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
+
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+          </div>
+
+           <nvd3 options="options6" data="data6" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
+
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+          </div>
+
+       <nvd3 options="options" data="data" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
           <div class="x">{{xAxis}}</div>
           <div ng-repeat="bar in data" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
         </div>
+      </div>
 
       <!-- Site footer -->
       <footer class="footer">
