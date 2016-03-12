@@ -10,6 +10,6 @@ var Words = mongoose.model('Words');
 router.get('/', function(req, res, next) {
   Words.find({})
   .then(function(words) {
-    res.sendStatus(200);
+    res.status(200).send(words);
   }).then(null, next);
 });

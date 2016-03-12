@@ -1,8 +1,8 @@
 'use strict';
 var router = require('express').Router();
-var natural = require('natural');
 module.exports = router;
 
+router.use('/analysis', require('./analysis'));
 router.use('/words', require('./words'));
 router.use('/poems', require('./poems'));
 router.use('/frequencies', require('./frequencies'));

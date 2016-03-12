@@ -70,19 +70,6 @@ var sentimentAnalysis = function(text, words) {
     return overallValence;
 };
 
-// Words.find({})
-//     .then(function(words) {
-//         words = words.map(function(word) {
-//             return word.toObject();
-//         });
-//       // berrymanSentiment = sentimentAnalysis(berryman, words);
-//       // plathSentiment = sentimentAnalysis(plath, words);
-//       // stevensSentiment = sentimentAnalysis(stevens, words);
-//       // shakespeareSentiment = sentimentAnalysis(shakespeare, words);
-//       cummingsSentiment = sentimentAnalysis(cummings, words);
-//       console.log(cummingsSentiment);
-// });
-
 var seedSentiments = function () {
 
     sentiments = [

@@ -1,9 +1,132 @@
 
-app.controller('HomeController', function ($scope, FrequencyFactory, SentimentFactory) {
+app.controller('HomeController', function ($scope, WordFactory, FrequencyFactory, SentimentFactory) {
 
   $scope.config = {
     extended: true
   };
+
+  $scope.showPOS = function() {
+    $scope.hideAllButPOS = false;
+    $scope.hideAllButSentiment = true;
+
+  }
+
+  $scope.showSentiment = function() {
+    $scope.hideAllButPOS = true;
+    $scope.hideAllButSentiment = false;
+  }
+
+
+  $scope.closest = {};
+  $scope.closest.text = 'Nobody, yet. Enter your poem!';
+
+  $scope.compare = function(sentiment, POS) {
+    var totalDiff = {};
+    for (var i=0; i<$scope.sentiments.length; i++) {
+      totalDiff[$scope.sentiments[i].author] = Math.abs(($scope.sentiments[i].sentiment - sentiment)*100);
+    }
+    for (var keys in POS) {
+      for (var j=0; j<$scope.data5.length; j++) {
+        if ($scope.data5[j].key === keys) {
+          totalDiff['William Shakespeare'] += Math.abs((POS[keys] - $scope.data5[j]['y']));
+        }
+      }
+    }
+    for (var keys in POS) {
+      for (var j=0; j<$scope.data4.length; j++) {
+        if ($scope.data4[j].key === keys) {
+          totalDiff['E.E. Cummings'] += Math.abs((POS[keys] - $scope.data4[j]['y']));
+        }
+      }
+    }
+    for (var keys in POS) {
+      for (var j=0; j<$scope.data3.length; j++) {
+        if ($scope.data3[j].key === keys) {
+          totalDiff['John Berryman'] += Math.abs((POS[keys] - $scope.data3[j]['y']));
+        }
+      }
+    }
+    for (var keys in POS) {
+      for (var j=0; j<$scope.data2.length; j++) {
+        if ($scope.data2[j].key === keys) {
+          totalDiff['Wallace Stevens'] += Math.abs((POS[keys] - $scope.data2[j]['y']));
+        }
+      }
+    }
+    for (var keys in POS) {
+      for (var j=0; j<$scope.data6.length; j++) {
+        if ($scope.data6[j].key === keys) {
+          totalDiff['Sylvia Plath'] += Math.abs((POS[keys] - $scope.data6[j]['y']));
+        }
+      }
+    }
+    var min, closestAuthor;
+    for (var author in totalDiff) {
+      if (totalDiff[author] < min || min === undefined) {
+        min = totalDiff[author];
+        closestAuthor = author;
+      }
+    }
+    if (closestAuthor === 'Sylvia Plath') {
+      $scope.closest.text = "Your poetry is closest to Sylvia Plath. Avoid ovens.";
+      $scope.closest.link = 'https://en.wikipedia.org/wiki/Sylvia_Plath';
+      $scope.closest.photo = 'https://www.poets.org/sites/default/files/styles/286x289/public/images/biographies/11_splat_150.jpg?itok=0yy1NVGf';
+    }
+    if (closestAuthor === 'Wallace Stevens') {
+      $scope.closest.text = "Your poetry is closest to Wallace Stevens. You truly are the emperor of ice cream.";
+      $scope.closest.link = 'https://en.wikipedia.org/wiki/Wallace_Stevens';
+      $scope.closest.photo = 'http://myweb.wvnet.edu/~jelkins/lp-2001/images/stevens3.jpg';
+    }
+    if (closestAuthor === 'William Shakespeare') {
+      $scope.closest.text = "Your poetry is closest to William Shakespeare. That doesn't mean it's good, just that you're ripping him off.";
+      $scope.closest.link = 'https://en.wikipedia.org/wiki/William_Shakespeare';
+      $scope.closest.photo = 'http://shakespeare.mit.edu/shake.gif';
+    }
+    if (closestAuthor === 'John Berryman') {
+      $scope.closest.text = "Your poetry is closest to John Berryman. Avoid bridges in Minneapolis.";
+      $scope.closest.link = 'https://en.wikipedia.org/wiki/John_Berryman';
+      $scope.closest.photo = 'http://www.fsgworkinprogress.com/wp-content/uploads/2015/02/WIP_Horizontal_Blog_Post_688_x_371px.jpg';
+    }
+    if (closestAuthor === 'E.E. Cummings') {
+      $scope.closest.text = "your poetry is closest to ee cummings";
+      $scope.closest.link = 'https://en.wikipedia.org/wiki/E._E._Cummings';
+      $scope.closest.photo = 'http://www.notablebiographies.com/images/uewb_03_img0211.jpg';
+    }
+  };
+
+  $scope.analyze = function(poem) {
+    poem = poem.split(/[\n ]/);
+    SentimentFactory.analyze(poem)
+    .then(function(analysis) {
+      $scope.data[0].values.push({label: 'You', value: $scope.sentimentAnalysis(poem)});
+      $scope.data7 = [];
+      for (var key in analysis) {
+        $scope.data7.push({key: key, y: analysis[key]});
+      }
+      $scope.compare($scope.sentimentAnalysis(poem), analysis);
+    });
+  };
+
+  WordFactory.fetchAll()
+  .then(function(words) {
+    $scope.words = words;
+  });
+
+  $scope.sentimentAnalysis = function(text) {
+    var overallValence = 0;
+    var overallValenceValue = 0;
+    text.forEach(function(word) {
+        $scope.words.forEach(function(instance) {
+          if (word === instance.description) {
+            overallValence ++;
+            overallValenceValue += instance.meanValence;
+          }
+        });
+    });
+    overallValence = overallValenceValue/overallValence || 5;
+    return overallValence;
+};
+
 
   SentimentFactory.fetchAll()
   .then(function(sentiments) {
@@ -22,7 +145,38 @@ app.controller('HomeController', function ($scope, FrequencyFactory, SentimentFa
     // }
   });
 
-  $scope.options = {
+  $scope.options7 = {
+    title: {
+      enable: true,
+      text: "Your Poem"
+    },
+    chart: {
+        type: 'pieChart',
+        height: 500,
+        width: 500,
+        x: function(d){return d.key; },
+        y: function(d){return d.y; },
+        showLabels: false,
+        duration: 500,
+        labelThreshold: 0.01,
+        labelSunbeamLayout: true,
+        legend: {
+            margin: {
+                top: 5,
+                right: 5,
+                bottom: 5,
+                left: 0
+            }
+        }
+    }
+  };
+
+$scope.data7 = [{
+  key : 'No Poem Entered',
+  y : 100
+}];
+
+$scope.options = {
     chart: {
         type: 'discreteBarChart',
         height: 450,

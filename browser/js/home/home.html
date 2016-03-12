@@ -53,25 +53,28 @@
         <h1>Professional Poetry Analysis for Pennies on the Dollar!</h1>
   <!--       <pre>frequencies: {{frequencies}}</pre>
         <pre>sentiments: {{sentiments}}</pre> -->
-        <p class="lead">Enter your poem below to have it analyzed for sentiment and word patterns. We can also compare it to some of the greats to see whose poetry you blatantly emulate.</p>
+        <p class="lead">Enter your poem below to have it analyzed for sentiment and word patterns. We'll also compare it to some of the greats to see whose poetry you blatantly emulate.</p>
       </div>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-6">
           <h2>Input Your Poem</h2>
-          <textarea class="form-control" rows="3"></textarea>
+          <textarea class="form-control" ng-model="poem" rows="3"></textarea>
           <p>Write or copy and paste your poem here for analysis.</p>
           <p><a class="btn btn-primary" ng-model="poem" ng-click="analyze(poem)" role="button">Analyze &raquo;</a></p>
        </div>
 
         <div class="col-lg-6">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" ng-model="poem" ng-click="analyze(poem)" role="button">View details &raquo;</a></p>
+          <h2>Your Poetry Is Closest To</h2>
+          <p>{{closest.text}}</p>
+          <p ng-show="closest.link"><a href="{{closest.link}}">Read more about this poet here.</a></p>
+          <p ng-show="closest.photo"><img src="{{closest.photo}}"></p>
+          <p><a class="btn btn-primary" ng-click="showSentiment()" role="button">View sentiment analysis &raquo;</a></p>
+          <p><a class="btn btn-primary" ng-click="showPOS()" role="button">View part-of-speech analysis &raquo;</a></p>
         </div>
       </div>
       <div>
-        <nvd3 options="options2" data="data2" config="{refreshDataOnly: false}"></nvd3>
+        <nvd3 ng-show="hideAllButSentiment" options="options2" data="data2" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -79,7 +82,7 @@
           <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
           </div>
           
-          <nvd3 options="options3" data="data3" config="{refreshDataOnly: false}"></nvd3>
+          <nvd3 ng-show="hideAllButSentiment" options="options3" data="data3" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -87,7 +90,7 @@
           <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
           </div>
 
-          <nvd3 options="options4" data="data4" config="{refreshDataOnly: false}"></nvd3>
+          <nvd3 ng-show="hideAllButSentiment" options="options4" data="data4" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -95,7 +98,7 @@
           <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
           </div>
 
-          <nvd3 options="options5" data="data5" config="{refreshDataOnly: false}"></nvd3>
+          <nvd3 ng-show="hideAllButSentiment" options="options5" data="data5" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -103,7 +106,7 @@
           <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
           </div>
 
-           <nvd3 options="options6" data="data6" config="{refreshDataOnly: false}"></nvd3>
+           <nvd3 ng-show="hideAllButSentiment" options="options6" data="data6" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -111,7 +114,16 @@
           <div ng-repeat="bar in data2" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
           </div>
 
-       <nvd3 options="options" data="data" config="{refreshDataOnly: false}"></nvd3>
+          <nvd3 ng-show="hideAllButSentiment" options="options7" data="data7" config="{refreshDataOnly: false}"></nvd3>
+        <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
+
+          <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+          <div class="x">{{xAxis}}</div>
+          <div ng-repeat="bar in data7" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
+        </div>
+      </div>
+
+       <nvd3 ng-show="hideAllButPOS" options="options" data="data" config="{refreshDataOnly: false}"></nvd3>
         <div class="col-lg-6" style="width:{{width}}px; height:{{height}}px;" display: "block">
 
           <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
@@ -119,6 +131,7 @@
           <div ng-repeat="bar in data" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; left:{{$index / data.length * width}}px;"></div>
         </div>
       </div>
+
 
       <!-- Site footer -->
       <footer class="footer">
