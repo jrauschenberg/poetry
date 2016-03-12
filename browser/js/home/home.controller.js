@@ -30,7 +30,7 @@ app.controller('HomeController', function ($scope, FrequencyFactory, SentimentFa
         },
         x: function(d){ return d.label; },
         y: function(d){ return d.value; },
-        showValues: true,
+        showValues: false,
         valueFormat: function(d){
             return d3.format(',.2f')(d);
         },
@@ -45,7 +45,6 @@ app.controller('HomeController', function ($scope, FrequencyFactory, SentimentFa
     }
   };
 
-
   $scope.data = [{
     key: "Poets and Sentiments",
     values: [
@@ -53,3 +52,5 @@ app.controller('HomeController', function ($scope, FrequencyFactory, SentimentFa
     }];
 
 });
+
+

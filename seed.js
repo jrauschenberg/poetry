@@ -32,7 +32,9 @@ var berryman = fs.readFileSync('berryman.txt', 'utf-8');
 var plath = fs.readFileSync('plath.txt', 'utf-8');
 var shakespeare = fs.readFileSync('shakespeare.txt', 'utf-8');
 var stevens = fs.readFileSync('stevens.txt', 'utf-8');
-var berrymanSentiment, plathSentiment, shakespeareSentiment, stevensSentiment;
+var cummings = fs.readFileSync('cummings.txt', 'utf-8');
+
+var berrymanSentiment, plathSentiment, shakespeareSentiment, stevensSentiment, cummingsSentiment;
 
 
 var seedUsers = function () {
@@ -73,11 +75,12 @@ var sentimentAnalysis = function(text, words) {
 //         words = words.map(function(word) {
 //             return word.toObject();
 //         });
-//       berrymanSentiment = sentimentAnalysis(berryman, words);
-//       plathSentiment = sentimentAnalysis(plath, words);
-//       stevensSentiment = sentimentAnalysis(stevens, words);
-//       shakespeareSentiment = sentimentAnalysis(shakespeare, words);
-//       console.log(shakespeareSentiment, berrymanSentiment, plathSentiment, stevensSentiment);
+//       // berrymanSentiment = sentimentAnalysis(berryman, words);
+//       // plathSentiment = sentimentAnalysis(plath, words);
+//       // stevensSentiment = sentimentAnalysis(stevens, words);
+//       // shakespeareSentiment = sentimentAnalysis(shakespeare, words);
+//       cummingsSentiment = sentimentAnalysis(cummings, words);
+//       console.log(cummingsSentiment);
 // });
 
 var seedSentiments = function () {
@@ -98,6 +101,10 @@ var seedSentiments = function () {
         {
             author: 'John Berryman',
             sentiment: 6.02
+        },
+        {
+            author: 'E.E. Cummings',
+            sentiment: 6.46
         }
     ];
 
@@ -123,6 +130,10 @@ var seedPoems = function () {
         {
             text: berryman,
             author: 'John Berryman'
+        },
+        {
+            text: cummings,
+            author: 'E.E. Cummings'
         }
     ];
 
@@ -185,6 +196,19 @@ var seedFrequencies = function () {
     pronoun: '6.11',
     modal: '1.25',
     'existential there': '0.09'
+    },
+    {
+        author: 'E.E. Cummings',
+        pronoun: '6.91',
+    noun: '29.47',
+    verb: '13.62',
+    'preposition or subordinating conjunction': '11.59',
+    undefined: '13.82',
+    determiner: '7.11',
+    adjective: '6.50',
+    adverb: '4.88',
+    modal: '2.24',
+    'coordinating conjunction': '3.86'
     }
 
     ];
