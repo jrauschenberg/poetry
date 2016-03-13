@@ -23,7 +23,7 @@ app.controller('HomeController', function ($scope, WordFactory, FrequencyFactory
   $scope.compare = function(sentiment, POS) {
     var totalDiff = {};
     for (var i=0; i<$scope.sentiments.length; i++) {
-      totalDiff[$scope.sentiments[i].author] = Math.abs(($scope.sentiments[i].sentiment - sentiment)*100);
+      totalDiff[$scope.sentiments[i].author] = Math.abs(($scope.sentiments[i].sentiment - sentiment)*2);
     }
     for (var keys in POS) {
       for (var j=0; j<$scope.data5.length; j++) {
@@ -198,7 +198,7 @@ $scope.options = {
             axisLabel: 'Poet'
         },
         yAxis: {
-            axisLabel: 'Sentiment',
+            axisLabel: 'Sentiment (1 is very negative, 10 is very positive)',
             axisLabelDistance: -5
         }
     },

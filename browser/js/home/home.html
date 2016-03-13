@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+  <!--   The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+  -->   <meta name="description" content="">
     <meta name="author" content="">
 <!--     <link rel="icon" href="../../favicon.ico">
  -->
@@ -68,7 +68,7 @@
           <h2>Your Poetry Is Closest To</h2>
           <p>{{closest.text}}</p>
           <p ng-show="closest.link"><a href="{{closest.link}}">Read more about this poet here.</a></p>
-          <p ng-show="closest.photo"><img src="{{closest.photo}}"></p>
+          <p ng-show="closest.photo"><img src="{{closest.photo}}" height="120" width="100"></p>
           <p><a class="btn btn-primary" ng-click="showSentiment()" role="button">View sentiment analysis &raquo;</a></p>
           <p><a class="btn btn-primary" ng-click="showPOS()" role="button">View part-of-speech analysis &raquo;</a></p>
         </div>
