@@ -11,7 +11,10 @@ app.controller('HomeController', function ($scope, WordFactory, FrequencyFactory
 
   }
 
+  $scope.poets = ['Wallace Stevens', 'John Berryman', 'William Shakespeare', 'Sylvia Plath', 'E.E. Cummings'];
+
   $scope.showSentiment = function() {
+    $scope.poet = null;
     $scope.hideAllButPOS = true;
     $scope.hideAllButSentiment = false;
   }
@@ -152,8 +155,8 @@ app.controller('HomeController', function ($scope, WordFactory, FrequencyFactory
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -218,8 +221,8 @@ $scope.options = {
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -277,7 +280,7 @@ $scope.options = {
     {
       key: "preposition or subordinating conjunction",
       y: 15.15
-    },
+    }
   ];
 
     $scope.options3 = {
@@ -287,8 +290,8 @@ $scope.options = {
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -346,7 +349,7 @@ $scope.options = {
     {
       key: "preposition or subordinating conjunction",
       y: 6.90
-    },
+    }
   ];
 
     $scope.options4 = {
@@ -356,8 +359,8 @@ $scope.options = {
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -411,7 +414,7 @@ $scope.options = {
     {
       key: "preposition or subordinating conjunction",
       y: 11.59
-    },
+    }
   ];
 
     $scope.options5 = {
@@ -421,8 +424,8 @@ $scope.options = {
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -480,7 +483,7 @@ $scope.options = {
     {
       key: "preposition or subordinating conjunction",
       y: 6.27
-    },
+    }
 
   ];
 
@@ -492,8 +495,8 @@ $scope.options = {
     },
     chart: {
         type: 'pieChart',
-        height: 500,
-        width: 500,
+        height: 400,
+        width: 400,
         x: function(d){return d.key; },
         y: function(d){return d.y; },
         showLabels: false,
@@ -551,7 +554,7 @@ $scope.options = {
     {
       key: "preposition or subordinating conjunction",
       y: 9.98
-    },
+    }
     
   ];
 
