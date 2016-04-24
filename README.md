@@ -48,7 +48,7 @@ gulp
 
 ### Demo
 
-See a live version of the app [here](https://guarded-plains-82965.herokuapp.com/)
+See a live version of the app [here.](https://guarded-plains-82965.herokuapp.com/)
 
 ### Screenshots
 
