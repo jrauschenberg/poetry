@@ -34,11 +34,11 @@ Note: the seed only comes with certain poetry. If you want more poetry, you will
 npm start
 ```
 and
-```bash
+	```bash
 gulp build
 ```
 Hereafter, you can make sure gulp is running by simply typing
-```bash
+	```bash
 gulp
 ```
 
