@@ -14,6 +14,7 @@ git clone https://github.com/jrauschenberg/poetry.git
 
 	```bash
 npm install
+```
 
 ## Usage
 
